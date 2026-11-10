@@ -1,0 +1,108 @@
+.donate-now-page {
+  min-height: 100vh;
+  width: 100%;
+  background: linear-gradient(135deg, #b8efff, #e5faff);
+  padding-bottom: 40px;
+}
+
+.donate-now-container {
+  width: 90%;
+  max-width: 750px;
+  margin: 40px auto;
+  padding: 40px;
+  background: #eaf8ff;
+  border-radius: 20px;
+}
+
+.donate-now-container h1 {
+  text-align: center;
+  color: #173b75;
+  font-size: 36px;
+  margin-bottom: 12px;
+}
+
+.donate-now-container > p {
+  text-align: center;
+  color: #526477;
+  margin-bottom: 30px;
+}
+
+.donate-now-card {
+  background: white;
+  padding: 35px;
+  border-radius: 18px;
+  box-shadow: 0 5px 20px rgba(0, 70, 120, 0.12);
+}
+
+.donate-now-card h2 {
+  text-align: center;
+  color: #173b75;
+  margin-bottom: 25px;
+}
+
+.amount-options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 25px;
+}
+
+.amount-options button {
+  padding: 14px;
+  border: 1px solid #168ac4;
+  border-radius: 9px;
+  background: white;
+  color: #168ac4;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.amount-options button.selected {
+  background: #168ac4;
+  color: white;
+}
+
+.donate-now-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.donate-now-card label {
+  color: #183b68;
+  font-weight: 600;
+}
+
+.donate-now-card input,
+.donate-now-card select {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #cbd9e5;
+  border-radius: 9px;
+  box-sizing: border-box;
+}
+
+.donate-now-card form button {
+  margin-top: 18px;
+  padding: 15px;
+  border: none;
+  border-radius: 9px;
+  background: #168ac4;
+  color: white;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.donate-now-card form button:hover {
+  background: #116b9b;
+}
+
+@media (max-width: 600px) {
+  .donate-now-container {
+    padding: 20px;
+  }
+
+  .donate-now-card {
+    padding: 20px;
+  }
+}

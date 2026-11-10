@@ -1,0 +1,84 @@
+.donation-report-page {
+  min-height: 100vh;
+  width: 100%;
+  background: linear-gradient(135deg, #b8efff, #e5faff);
+  padding-bottom: 40px;
+}
+
+.donation-report-container {
+  width: 92%;
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 35px;
+  background: #eaf8ff;
+  border-radius: 20px;
+}
+
+.donation-report-container > h1 {
+  text-align: center;
+  color: #173b75;
+  font-size: 36px;
+  margin-bottom: 12px;
+}
+
+.donation-report-container > p {
+  text-align: center;
+  color: #526477;
+  margin-bottom: 35px;
+}
+
+.donation-total {
+  background: #168ac4;
+  color: white;
+  text-align: center;
+  padding: 30px;
+  border-radius: 15px;
+  margin-bottom: 30px;
+}
+
+.donation-total h2 {
+  margin-bottom: 12px;
+}
+
+.donation-total h1 {
+  font-size: 36px;
+}
+
+.donation-table-card {
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 70, 120, 0.1);
+}
+
+.donation-table-card h2 {
+  color: #173b75;
+  margin-bottom: 20px;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.donation-table-card table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+}
+
+.donation-table-card th,
+.donation-table-card td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #dce8f0;
+}
+
+.donation-table-card th {
+  background: #168ac4;
+  color: white;
+}
+
+.donation-table-card tr:hover {
+  background: #f0faff;
+}

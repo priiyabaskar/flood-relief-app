@@ -1,0 +1,104 @@
+.report-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #b8efff, #e5faff);
+  padding-bottom: 40px;
+}
+
+.report-container {
+  max-width: 750px;
+  margin: 35px auto;
+  padding: 35px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 5px 20px rgba(0, 70, 120, 0.12);
+}
+
+.report-container h1 {
+  color: #173b75;
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.report-container p {
+  text-align: center;
+  color: #526477;
+  margin-bottom: 30px;
+}
+
+.report-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.report-form label {
+  color: #183b68;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+.report-form input,
+.report-form select,
+.report-form textarea {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #cbd9e5;
+  border-radius: 9px;
+  font-size: 15px;
+  background: #f8fcff;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.report-form input:focus,
+.report-form select:focus,
+.report-form textarea:focus {
+  border-color: #168ac4;
+}
+
+.report-form textarea {
+  resize: vertical;
+}
+
+.report-form button {
+  margin-top: 15px;
+  padding: 14px;
+  border: none;
+  border-radius: 9px;
+  background: #168ac4;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.report-form button:hover {
+  background: #116b9b;
+}
+
+@media (max-width: 600px) {
+  .report-container {
+    margin: 20px 12px;
+    padding: 22px;
+  }
+}/* Reduce empty space on the right side */
+.report-page {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.report-container {
+  width: 94%;
+  max-width: 1400px;
+  margin: 30px auto;
+  box-sizing: border-box;
+}.success-message {
+  color: #15803d;
+  background: #dcfce7;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  text-align: center;
+  font-weight: bold;
+}
