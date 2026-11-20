@@ -9,6 +9,7 @@ import Volunteer from "./pages/volunteer";
 import DonateNow from "./pages/DonateNow";
 import Contact from "./pages/Contact";
 import DonationReport from "./pages/DonationReport";
+import VolunteerList from "./pages/VolunteerList";
 function App() {
   return (
     <BrowserRouter>
@@ -22,6 +23,7 @@ function App() {
         <Route path="/Volunteer" element={<Volunteer />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/donation-report" element={<DonationReport />} />
+        <Route path="/volunteer-list" element={<VolunteerList />} />
       </Routes>
     </BrowserRouter>
   );

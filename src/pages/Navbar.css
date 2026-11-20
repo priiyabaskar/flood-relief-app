@@ -34,6 +34,12 @@
   font-weight: 600;
 }
 
+.navbar-links a.active {
+  color: #1595d3;
+  border-bottom: 2px solid #1595d3;
+  padding-bottom: 5px;
+  font-weight: 700;
+}
 .navbar-links a:hover {
   color: #1595d3;
 }

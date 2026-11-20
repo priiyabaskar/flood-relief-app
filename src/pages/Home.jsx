@@ -1,12 +1,121 @@
 import { Link } from "react-router-dom";
-import"./Home.css";
+import { useState, useEffect } from "react";
+import "./Home.css";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import "./Footer.css";
+
 function Home() {
+  const [peopleHelped, setPeopleHelped] = useState(0);
+  const [affectedAreas, setAffectedAreas] = useState(0);
+  const [totalDonations, setTotalDonations] = useState(0);
+  const [totalVolunteers, setTotalVolunteers] = useState(0);
+  const [needType, setNeedType] = useState("");
+  const [location, setLocation] = useState("");
+  const [description, setDescription] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+
+  useEffect(() => {
+    const requests =
+      JSON.parse(localStorage.getItem("requests")) || [];
+
+    const donations =
+      JSON.parse(localStorage.getItem("donations")) || [];
+
+    const updateVolunteerCount = () => {
+  const volunteers =
+    JSON.parse(localStorage.getItem("volunteers")) || [];
+
+  setTotalVolunteers(volunteers.length);
+};
+
+updateVolunteerCount();
+
+window.addEventListener("volunteerUpdated", updateVolunteerCount);  
+
+    setPeopleHelped(requests.length);
+
+    const locations = [
+      ...new Set(
+        requests
+          .map((item) =>
+            item.formData?.location || item.location || ""
+          )
+          .filter(Boolean)
+      ),
+    ];
+
+    setAffectedAreas(locations.length);
+
+    const total = donations.reduce(
+      (sum, item) => sum + Number(item.amount || 0),
+      0
+    );
+
+    setTotalDonations(total);
+  return () => {
+  window.removeEventListener(
+    "volunteerUpdated",
+    updateVolunteerCount
+  );
+};
+}, []);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!needType || !location.trim() || !description.trim()) {
+      alert("Please fill all fields");
+      return;
+    }
+
+    const oldRequests =
+      JSON.parse(localStorage.getItem("requests")) || [];
+
+    const newRequest = {
+      id: Date.now().toString(),
+      formData: {
+        name: "Home Page User",
+        phone: "",
+        location: location,
+        assistance: needType,
+        description: description,
+      },
+      status: "Pending",
+    };
+
+    localStorage.setItem(
+      "requests",
+      JSON.stringify([newRequest, ...oldRequests])
+    );
+
+    setSuccessMessage(
+      "Request Submitted Successfully! Your Request ID: " +
+        newRequest.id
+    );
+
+    setPeopleHelped(oldRequests.length + 1);
+
+    const updatedLocations = [
+      ...new Set([
+        ...oldRequests.map((item) =>
+          item.formData?.location || item.location || ""
+        ),
+        location,
+      ].filter(Boolean)),
+    ];
+
+    setAffectedAreas(updatedLocations.length);
+
+    setNeedType("");
+    setLocation("");
+    setDescription("");
+  };
+
   return (
     <div className="home-page">
       <Navbar />
+
       <section className="home-hero">
         <div className="hero-content">
           <h1>
@@ -40,47 +149,70 @@ function Home() {
           <h2>📢 Request Assistance</h2>
           <p>Let us know your need</p>
 
-          <select defaultValue="">
-            <option value="" disabled>Select Type</option>
-            <option>Food</option>
-            <option>Water</option>
-            <option>Medical Help</option>
-            <option>Rescue</option>
-            <option>Shelter</option>
-          </select>
+          {successMessage && (
+            <p className="success-message">
+              {successMessage}
+            </p>
+          )}
 
-          <input type="text" placeholder="📍 Your Location" />
+          <form onSubmit={handleSubmit}>
+            <select
+              value={needType}
+              onChange={(e) => setNeedType(e.target.value)}
+              required
+            >
+              <option value="">Select Type</option>
+              <option value="Food">Food</option>
+              <option value="Water">Water</option>
+              <option value="Medical Help">Medical Help</option>
+              <option value="Rescue">Rescue</option>
+              <option value="Shelter">Shelter</option>
+            </select>
 
-          <textarea placeholder="Describe your need"></textarea>
+            <input
+              type="text"
+              placeholder="📍 Your Location"
+              value={location}
+              onChange={(e) => setLocation(e.target.value)}
+              required
+            />
 
-          <Link to="/report" className="submit-btn">
-            Submit Request
-          </Link>
+            <textarea
+              placeholder="Describe your need"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              required
+            />
+
+            <button type="submit" className="submit-btn">
+              Submit Request
+            </button>
+          </form>
         </div>
       </section>
 
       <section className="stats-section">
         <div className="stat-card">
           <h2>👥</h2>
-          <h3>1,25,000+</h3>
+          <h3>{peopleHelped}</h3>
           <p>People Helped</p>
         </div>
 
         <div className="stat-card">
           <h2>🏠</h2>
-          <h3>120+</h3>
+          <h3>{affectedAreas}</h3>
           <p>Affected Areas</p>
         </div>
 
         <div className="stat-card">
           <h2>❤️</h2>
-          <h3>₹ 2.5 Cr+</h3>
+          <h3>₹ {totalDonations.toLocaleString("en-IN")}</h3>
           <p>Donations Received</p>
         </div>
 
         <div className="stat-card">
           <h2>🙋</h2>
-          <h3>50,000+</h3>
+          <h3>{totalVolunteers}</h3>
           <p>Volunteers</p>
         </div>
       </section>
@@ -117,7 +249,7 @@ function Home() {
       </section>
 
       <section className="bottom-sections">
-        <div className="innovation-card">
+        <div className="card">
           <h2>💡 Innovation Feature</h2>
           <h3>Smart Relief Tracker</h3>
           <p>
@@ -133,6 +265,8 @@ function Home() {
           <p>🏥 Medical Camp Started</p>
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 }

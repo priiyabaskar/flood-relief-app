@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./Navbar.css";
 
 function Navbar() {
@@ -9,14 +9,21 @@ function Navbar() {
       </div>
 
       <nav className="navbar-links">
-        <Link to="/">Home</Link>
-        <Link to="/about">About</Link>
-        <Link to="/report">Report Need</Link>
-        <Link to="/track">Track Request</Link>
-        <Link to="/donate">Donate</Link>
-        <Link to="/donation-report">Donation Report</Link>
-        <Link to="/volunteer">Volunteer</Link>
-        <Link to="/contact">Contact</Link>
+        <NavLink to="/" end className={({ isActive }) => isActive ? "active" : ""}>Home</NavLink>
+        <NavLink to="/about" className={({ isActive }) => isActive ? "active" : ""}>About</NavLink>
+        <NavLink to="/report" className={({ isActive }) => isActive ? "active" : ""}>Report Need</NavLink>
+        <NavLink to="/track" className={({ isActive }) => isActive ? "active" : ""}>Track Request</NavLink>
+        <NavLink to="/donate" className={({ isActive }) => isActive ? "active" : ""}>Donate</NavLink>
+        <NavLink to="/donation-report" className={({ isActive }) => isActive ? "active" : ""}>Donation Report</NavLink>
+        
+        <NavLink to="/volunteer" className={({ isActive }) => isActive ? "active" : ""}>Volunteer</NavLink>
+       <NavLink
+  to="/volunteer-list"
+  className={({ isActive }) => isActive ? "active" : ""}
+>
+  Volunteer List
+</NavLink>
+        <NavLink to="/contact" className={({ isActive }) => isActive ? "active" : ""}>Contact</NavLink>
       </nav>
 
       <div className="emergency">
